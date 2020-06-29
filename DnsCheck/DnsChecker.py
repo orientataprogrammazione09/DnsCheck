@@ -1,21 +1,20 @@
 import socket
 import time
-import sys
-
 
 
 def check_conn():
-    host = ["www.google.com","www.facebook.com","www.instagram.com"]
+    host = ["www.google.com", "www.facebook.com", "www.instagram.com"]
     port = int(53)
     for host in host:
         host_risolto = socket.gethostbyname(host)
-        print(host_risolto)
+        print(host_risolto + host)
     host = host_risolto
     timer = int(time.perf_counter())
     s = socket.socket()
-
-    s.connect((str(host), int(port)))
-
+    try:
+        s.connect((str(host_risolto), port))
+    except socket.error as error:
+        print(error)
 
 
 check_conn()
